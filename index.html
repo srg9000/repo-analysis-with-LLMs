@@ -68,7 +68,12 @@
   <h2>Processed URL:</h2>
   <p id="processedURL"><a id="processedURLLink" href="#" target="_blank"></a></p>
   
+  <h2>Custom Messages:</h2>
+  <ul id="customMessages"></ul>
+
   <script>
+    
+
     function processURL() {
       var inputURL = document.getElementById("urlInput").value;
       $.ajax({
@@ -77,12 +82,27 @@
         data: JSON.stringify({ url: inputURL }),
         contentType: "application/json",
         success: function(data) {
-          document.getElementById("processedURLLink").textContent = data.processedURL;
+          var processedURL = data.processedURL;
+          var customMessages = data.customMessages;
+
+          var processedURLLink = document.getElementById("processedURLLink");
+          processedURLLink.href = processedURL;
+          processedURLLink.textContent = processedURL;
+
+          var customMessagesList = document.getElementById("customMessages");
+          customMessagesList.innerHTML = ""; // Clear previous messages
+
+          for (var i = 0; i < customMessages.length; i++) {
+            var message = document.createElement("li");
+            message.textContent = customMessages[i];
+            customMessagesList.appendChild(message);
+          }
         },
         error: function() {
           alert("An error occurred while processing the URL.");
         }
       });
+
     }
   </script>
 </body>

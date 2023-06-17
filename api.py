@@ -12,7 +12,20 @@ def process_url():
     # Process the URL here using your own logic
     processed_url = "https://example.com/processed"
     
-    return jsonify({"processedURL": processed_url})
+    custom_messages = [
+        "This is the first custom message.",
+        "Here's another custom message.",
+        "And a third custom message.",
+    ]
+    
+    return jsonify({
+        "processedURL": processed_url,
+        "customMessages": custom_messages
+    })
+
+if __name__ == "__main__":
+    app.run()
+
 
 if __name__ == "__main__":
     app.run()
