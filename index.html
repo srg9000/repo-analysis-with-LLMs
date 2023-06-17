@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>URL Processing</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+  <h1>URL Processing</h1>
+  
+  <label for="urlInput">Enter URL:</label>
+  <input type="text" id="urlInput">
+  <button onclick="processURL()">Process</button>
+  
+  <h2>Processed URL:</h2>
+  <p id="processedURL"></p>
+  
+  <script>
+    function processURL() {
+      var inputURL = document.getElementById("urlInput").value;
+      $.ajax({
+        url: "/process-url",
+        type: "POST",
+        data: JSON.stringify({ url: inputURL }),
+        contentType: "application/json",
+        success: function(data) {
+          document.getElementById("processedURL").textContent = data.processedURL;
+        },
+        error: function() {
+          alert("An error occurred while processing the URL.");
+        }
+      });
+    }
+  </script>
+</body>
+</html>

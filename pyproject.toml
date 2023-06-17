@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "repo-analysis-with-llms"
+version = "0.1.0"
+description = ""
+authors = ["srg9000 <sajangohil11@gmail.com>"]
+readme = "README.md"
+packages = [{include = "repo_analysis_with_llms"}]
+
+[tool.poetry.dependencies]
+python = "^3.8.1"
+langchain = "^0.0.202"
+pygithub = "^1.58.2"
+flask = "^2.3.2"
+flask-cors = "^3.0.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
